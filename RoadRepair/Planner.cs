@@ -63,7 +63,8 @@ namespace RoadRepair
         /// <returns>The total cost of all the repairs</returns>
         public double GetCostOfRepairs(List<Road> roads)
         {
-            throw new NotImplementedException("TODO");
+            var totalCost = roads.Sum(x => SelectRepairType(x).GetCost());
+            return totalCost;
         }
 
         /// <summary>
