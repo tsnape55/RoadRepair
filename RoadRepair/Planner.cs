@@ -76,7 +76,25 @@ namespace RoadRepair
         /// <returns>A subset of roads that can be repaired with the available money</returns>
         public List<Road> SelectRoadsToRepair(List<Road> roads, double availableMoney)
         {
-            throw new NotImplementedException("TODO");
+            var roadsWithCosts = roads.Select(road => new
+            {
+                Road = road,
+                Cost = SelectRepairType(road).GetCost()
+            }).OrderByDescending(x => x.Cost).ToList();
+
+            var selectedRoads = new List<Road>();
+            double remainingMoney = availableMoney;
+
+            foreach (var roadWithCost in roadsWithCosts)
+            {
+                if (roadWithCost.Cost <= remainingMoney)
+                {
+                    selectedRoads.Add(roadWithCost.Road);
+                    remainingMoney -= roadWithCost.Cost;
+                }
+            }
+
+            return selectedRoads;
         }
     }
 }
