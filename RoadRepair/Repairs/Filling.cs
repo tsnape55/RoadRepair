@@ -3,19 +3,16 @@
     /// <summary>
     /// Filling is where you fix only the individual potholes.
     /// </summary>
-    public class Filling
+    public class Filling : BaseRepairType
     {
-        public Filling(Road road)
+        public Filling(Road road) : base(road)
         {
-            Potholes = road.Potholes;
             CostPerHole = 10;
         }
 
-        public int Potholes { get; }
-
         public double CostPerHole { get; }
 
-        public double GetCost()
+        public override double GetCost()
         {
             var cost = Potholes * CostPerHole;
             return cost;

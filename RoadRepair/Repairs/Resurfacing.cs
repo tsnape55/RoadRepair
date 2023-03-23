@@ -1,19 +1,15 @@
 ﻿namespace RoadRepair.Repairs
 {
-    public class Resurfacing
+    public class Resurfacing : BaseRepairType
     {
-        public Resurfacing(Road road)
+        public Resurfacing(Road road) : base(road)
         {
-            Width = road.Width;
-            Length = road.Length;
             UnitCost = 20;
         }
 
-        public double Width { get; }
-        public double Length { get; }
         public double UnitCost { get; }
 
-        public double GetCost()
+        public override double GetCost()
         {
             var cost = Width * Length * UnitCost;
             return cost;
