@@ -80,7 +80,7 @@ namespace RoadRepair
             {
                 Road = road,
                 Cost = SelectRepairType(road).GetCost()
-            }).OrderByDescending(x => x.Cost).ToList();
+            }).OrderByDescending(x => x.Road.Potholes).ToList();
 
             var selectedRoads = new List<Road>();
             double remainingMoney = availableMoney;
