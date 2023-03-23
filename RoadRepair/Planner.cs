@@ -23,7 +23,7 @@ namespace RoadRepair
         /// <returns>The number of hours to complete the work.</returns>
         public double GetTime()
         {
-            var time = HoursOfWork / Workers;
+            var time = (double)HoursOfWork / Workers;
             return time;
         }
 
