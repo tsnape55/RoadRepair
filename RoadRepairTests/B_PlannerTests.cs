@@ -18,6 +18,34 @@ namespace RoadRepairTests
         }
 
         [TestMethod]
+        public void PotholesLessThanZero()
+        {
+            var road = new Road
+            {
+                Length = 10,
+                Width = 5,
+                Potholes = -1
+            };
+
+            var percent = road.GetPotholePercent();
+            Assert.IsTrue(percent == 0);
+        }
+
+        [TestMethod]
+        public void PotholesGreaterThanHundredPercent()
+        {
+            var road = new Road
+            {
+                Length = 10,
+                Width = 5,
+                Potholes = 51
+            };
+
+            var percent = road.GetPotholePercent();
+            Assert.IsTrue(percent == 100);
+        }
+
+        [TestMethod]
         public void PlanRepairForRoadWithFewPotholes()
         {
             var road = new Road { Length = 10, Width = 5 };

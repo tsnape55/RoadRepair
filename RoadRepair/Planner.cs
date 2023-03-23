@@ -33,7 +33,7 @@ namespace RoadRepair
         /// </summary>
         /// <param name="road">A road needing repair</param>
         /// <returns>Either a Filling, a Patching or a Resurfacing</returns>
-        public object SelectRepairType(Road road)
+        public BaseRepairType SelectRepairType(Road road)
         {
             // Use the road.Width, road.Length and road.Potholes properties to calculate the density of potholes. 
 
@@ -41,7 +41,19 @@ namespace RoadRepair
             // If the density of potholes is 20% or more, but less than 40%, the road should be patched.
             // Otherwise it should be filled.
 
-            throw new NotImplementedException("TODO");
+            var percent = road.GetPotholePercent();
+
+            if (percent >= 40)
+            {
+                return new Resurfacing(road);
+            }
+
+            if (percent >= 20 && percent < 40)
+            {
+                return new Patching(road);
+            }
+
+            return new Filling(road);
         }
 
         /// <summary>
